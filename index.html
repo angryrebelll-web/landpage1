@@ -1389,6 +1389,17 @@
 
         /* Навигация в цвет кнопок (бирюзовый) */
         .nav {
+            display: block;
+            visibility: visible;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding-top: env(safe-area-inset-top, 0);
+        }
+        
+        /* Навигация */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -1402,9 +1413,9 @@
             height: auto;
             min-height: auto !important;
         }
-        
+
         .propellini-logo {
-            height: 36px;
+            height: 40px;
             width: auto;
             filter: brightness(0) invert(1);
             opacity: 1;
@@ -1607,7 +1618,6 @@
             transition: color 0.3s ease;
             line-height: 1;
             padding: 0;
-            text-decoration: underline;
         }
 
         .nav-link:hover {
@@ -1634,6 +1644,18 @@
             line-height: 1;
             display: inline-block;
             transition: color 0.3s ease;
+        }
+        
+        @media (max-width: 1200px) {
+            .nav-link-button {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-link-button {
+                font-size: 12px;
+            }
         }
 
         .nav-link-button:hover {
@@ -4589,7 +4611,7 @@
         <div class="container nav-container nav-container-custom">
             <div class="flex items-center justify-between nav-header-wrapper">
                 <div class="flex items-center gap-1 nav-logo-wrapper">
-                    <a href="#main-content" class="nav-logo-link">
+                    <a href="#hero" class="nav-logo-link">
                         <img src="https://propellini.ru/wp-content/uploads/2025/10/cropped-chernaya-ikonka.png" alt="Propellini" class="propellini-logo" loading="eager" decoding="async">
                         <div class="nav-logo-text nav-logo-text-custom">
                             Propellini
