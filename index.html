@@ -3650,7 +3650,32 @@
                 min-height: 250px;
             }
             
-            /* Services на мобильных */
+            /* Services на мобильных - горизонтальный скролл */
+            .grid.md\\:grid-cols-3 {
+                display: flex;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                gap: 16px;
+                padding: 0;
+                scroll-behavior: smooth;
+            }
+            
+            .grid.md\\:grid-cols-3::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .grid.md\\:grid-cols-3 > .service-card {
+                flex: 0 0 calc(100% - 32px);
+                min-width: calc(100% - 32px);
+                max-width: calc(100% - 32px);
+                scroll-snap-align: start;
+                margin: 0 16px;
+            }
+            
             .service-grid {
                 grid-template-columns: 1fr;
                 gap: 16px;
@@ -3658,6 +3683,18 @@
             
             .service-card {
                 padding: 24px 20px;
+            }
+            
+            /* Логотипы пленок на мобильных */
+            #films .grid.grid-cols-2 img,
+            #films .grid img {
+                max-height: 40px !important;
+            }
+            
+            #films .grid.grid-cols-2 > div,
+            #films .grid > div {
+                min-height: 60px !important;
+                padding: 8px !important;
             }
 
             .max-w-7xl {
