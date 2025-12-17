@@ -3651,29 +3651,29 @@
             }
             
             /* Services на мобильных - горизонтальный скролл */
-            .grid.md\\:grid-cols-3 {
-                display: flex;
-                overflow-x: auto;
-                overflow-y: hidden;
+            #services .grid.md\\:grid-cols-3 {
+                display: flex !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
                 gap: 16px;
-                padding: 0;
+                padding: 0 16px;
                 scroll-behavior: smooth;
             }
             
-            .grid.md\\:grid-cols-3::-webkit-scrollbar {
+            #services .grid.md\\:grid-cols-3::-webkit-scrollbar {
                 display: none;
             }
             
-            .grid.md\\:grid-cols-3 > .service-card {
-                flex: 0 0 calc(100% - 32px);
-                min-width: calc(100% - 32px);
-                max-width: calc(100% - 32px);
+            #services .grid.md\\:grid-cols-3 > .service-card {
+                flex: 0 0 calc(100% - 32px) !important;
+                min-width: calc(100% - 32px) !important;
+                max-width: calc(100% - 32px) !important;
                 scroll-snap-align: start;
-                margin: 0 16px;
+                margin: 0;
             }
             
             .service-grid {
