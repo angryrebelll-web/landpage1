@@ -591,13 +591,13 @@
         .contact-logo {
             height: 30px;
             margin-right: 8px;
-            filter: brightness(0) invert(1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-            opacity: 1;
-            transition: opacity 0.3s ease, filter 0.3s ease;
+            filter: brightness(0) invert(1) drop-shadow(0 0 1px rgba(255, 255, 255, 1)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8)) !important;
+            opacity: 1 !important;
+            transition: filter 0.3s ease;
         }
         
         .contact-logo:hover {
-            filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+            filter: brightness(0) invert(1) drop-shadow(0 0 2px rgba(255, 255, 255, 1)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) !important;
         }
 
         .logo-text {
@@ -4387,7 +4387,7 @@
                 <div class="contacts-left">
                     <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 20px; color: #fff;">Центр оклейки защитной пленкой</h3>
                     <div class="logo-block">
-                        <img src="https://propellini.ru/wp-content/uploads/2025/10/cropped-chernaya-ikonka.png" alt="Propellini" class="contact-logo">
+                        <img src="https://propellini.ru/wp-content/uploads/2025/10/cropped-chernaya-ikonka.png" alt="Propellini" class="contact-logo" style="filter: brightness(0) invert(1) !important; opacity: 1 !important;">
                         <span class="logo-text">Propellini</span>
                     </div>
                     <p><strong>Адрес:</strong><br>Москва, ул. Авиационная, 79 к. 1</p>
