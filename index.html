@@ -1524,6 +1524,21 @@
             width: 100%;
         }
 
+        /* Адаптивность навигации */
+        @media (max-width: 1024px) {
+            .nav-link {
+                font-size: 12px;
+            }
+            .nav .btn-primary {
+                padding: 2px 8px;
+                font-size: 14px;
+            }
+            .nav-container {
+                padding-top: 8px !important;
+                padding-bottom: 8px !important;
+            }
+        }
+
         .mobile-menu-link-button {
             background: none;
             border: none;
@@ -1831,6 +1846,60 @@
         }
 
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+                min-width: 40px;
+                min-height: 40px;
+                padding: 8px;
+            }
+            .nav-container {
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            .nav-container-custom {
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            .nav {
+                height: auto !important;
+                min-height: auto !important;
+                padding: 5px 0 !important;
+            }
+            .propellini-logo {
+                height: 28px;
+            }
+            .nav-logo-text {
+                font-size: 16px !important;
+            }
+            .nav-logo-text-custom {
+                font-size: 16px !important;
+            }
+            .nav-link {
+                font-size: 15px;
+            }
+            .nav .btn-primary {
+                padding: 5px 10px !important;
+                font-size: 12px;
+                min-height: 28px;
+            }
+            .mobile-menu {
+                top: 50px;
+                max-height: calc(100vh - 50px);
+            }
+            .mobile-menu a {
+                padding: 12px 16px !important;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            .nav-actions-wrapper {
+                gap: 12px;
+            }
+            
             .section {
                 padding: 60px 0;
             }
@@ -3901,6 +3970,12 @@
                 max-height: calc(100vh - 50px);
             }
             .mobile-menu a {
+                padding: 12px 16px !important;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            .mobile-menu-link-button {
                 padding: 12px 16px !important;
                 min-height: 44px;
                 display: flex;
