@@ -3052,6 +3052,20 @@ body {
         font-size: 26px;
     }
     
+    .bottom-panel-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .price-label {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .price-value {
+        font-size: 26px;
+    }
+    
     .calculator-bottom-panel {
         padding: 14px 20px;
     }
