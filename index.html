@@ -1732,8 +1732,15 @@
             line-height: 1.2;
         }
 
+        /* Gap для навигации */
         .nav-links-wrapper {
-            gap: 42px;
+            gap: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links-wrapper {
+                gap: 18px;
+            }
         }
 
         /* Круглая плавающая кнопка "Записаться" */
