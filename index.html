@@ -135,7 +135,7 @@
             
             /* Текст */
             --propellini-text: #ffffff;
-            --propellini-text-secondary: #e0e0e0;
+            --propellini-text-secondary: #e8e8e8;
             --propellini-text-muted: #808080;
             
             /* Стеклянные карточки */
@@ -3829,7 +3829,7 @@
                 padding-right: 0 !important;
             }
             
-            /* Логотипы пленок в карточках услуг на мобильных */
+            /* Логотипы пленок в карточках услуг на мобильных - уже сверху карточек */
             #services .service-card > div[style*="width: 60px"],
             #services .service-card > div[style*="60px"],
             #services .service-card > div:first-child {
@@ -3841,6 +3841,7 @@
                 margin-left: auto !important;
                 margin-right: auto !important;
                 margin-bottom: 20px !important;
+                order: -1 !important;
             }
             
             #services .service-card > div[style*="width: 60px"] img,
