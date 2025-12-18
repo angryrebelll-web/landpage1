@@ -1730,6 +1730,21 @@
             align-items: center;
             gap: 2px;
             text-decoration: none;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+        
+        .nav-link {
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+        
+        .nav-link-button {
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
         }
 
         .nav-logo-text-custom {
@@ -2828,10 +2843,20 @@
                 text-align: center !important;
                 margin-left: auto;
                 margin-right: auto;
+                padding: 0 20px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .hero-title .word-animate {
+                display: inline-block;
+                word-break: keep-all;
             }
             
             .hero-content {
                 text-align: center;
+                padding-top: 100px !important;
             }
             
             .hero-top {
@@ -2839,6 +2864,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-top: 20px;
             }
             
             h2, .section-title {
@@ -3385,11 +3411,19 @@
                 font-size: 36px;
                 line-height: 40px;
                 margin-bottom: 16px;
-                padding: 0 40px;
+                padding: 0 20px;
                 max-width: 100%;
                 text-align: center !important;
                 margin-left: auto;
                 margin-right: auto;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .hero-title .word-animate {
+                display: inline-block;
+                word-break: keep-all;
             }
             
             .hero-top {
@@ -3397,9 +3431,10 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-top: 30px;
             }
             .hero-content {
-                padding: 55px 20px 30px;
+                padding: 100px 20px 30px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -4245,11 +4280,19 @@
                 font-size: 28px;
                 line-height: 32px;
                 margin-bottom: 10px;
-                padding: 0 30px;
+                padding: 0 20px;
                 max-width: 100%;
                 text-align: center !important;
                 margin-left: auto;
                 margin-right: auto;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            .hero-title .word-animate {
+                display: inline-block;
+                word-break: keep-all;
             }
             
             .hero-top {
@@ -4257,9 +4300,10 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-top: 30px;
             }
             .hero-content {
-                padding: 40px 12px 18px;
+                padding: 100px 12px 18px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -4839,7 +4883,7 @@
     </button>
 
     <!-- Hero секция с параллаксом -->
-    <section class="hero parallax-section" id="main-content" style="position: relative; min-height: 100vh; overflow: hidden;">
+    <section class="hero parallax-section" id="hero" style="position: relative; min-height: 100vh; overflow: hidden;">
         <!-- Параллакс фон с picture для разных разрешений -->
         <div class="hero-bg" id="hero-bg">
             <picture>
@@ -4867,8 +4911,8 @@
         <div class="hero-content">
             <div class="max-w-5xl mx-auto" style="text-align: center;">
                 <!-- Главный заголовок - появляется первым -->
-                <h1 class="hero-title" id="heroTitle" style="opacity: 0; transform: translateY(30px) translateX(-40px); transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); font-size: 60px; line-height: 60px; font-weight: 400; letter-spacing: 0; margin-bottom: 2rem; font-family: 'Unbounded', sans-serif; text-align: center; margin-left: auto; margin-right: auto; display: block; width: 100%; color: #FFFFFF; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;">
-                    <span class="word-animate">Профессиональная</span> <span class="word-animate">оклейка</span> <span class="word-animate">защитной</span> <span class="word-animate">пленкой</span> <span class="word-animate">в</span> <span class="word-animate">Москве</span>
+                <h1 class="hero-title" id="heroTitle" style="opacity: 0; transform: translateY(30px) translateX(-40px); transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); font-size: 60px; line-height: 60px; font-weight: 400; letter-spacing: 0; margin-bottom: 2rem; font-family: 'Unbounded', sans-serif; text-align: center; margin-left: auto; margin-right: auto; display: block; width: 100%; color: #FFFFFF; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; word-wrap: break-word; overflow-wrap: break-word;">
+                    <span class="word-animate" style="white-space: nowrap;">Профессиональная</span> <span class="word-animate">оклейка</span> <span class="word-animate">защитной</span> <span class="word-animate">пленкой</span> <span class="word-animate">в</span> <span class="word-animate">Москве</span>
                 </h1>
                 
                 <!-- Цены - появляются вторыми -->
