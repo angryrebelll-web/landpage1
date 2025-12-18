@@ -3673,32 +3673,37 @@
             }
             
             /* Reviews на мобильных - горизонтальный скролл */
-            #reviews .grid.md\\:grid-cols-3 {
+            #reviews .grid.md\\:grid-cols-3,
+            #reviews .grid {
                 display: flex !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                gap: 0;
-                padding: 0;
-                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+                gap: 0 !important;
+                padding: 0 !important;
+                scroll-behavior: smooth !important;
             }
             
-            #reviews .grid.md\\:grid-cols-3::-webkit-scrollbar {
-                display: none;
+            #reviews .grid.md\\:grid-cols-3::-webkit-scrollbar,
+            #reviews .grid::-webkit-scrollbar {
+                display: none !important;
             }
             
             #reviews .grid.md\\:grid-cols-3 > .review-item,
-            #reviews .grid.md\\:grid-cols-3 > a {
+            #reviews .grid.md\\:grid-cols-3 > a,
+            #reviews .grid > .review-item,
+            #reviews .grid > a,
+            #reviews .grid > div {
                 flex: 0 0 100% !important;
                 min-width: 100% !important;
                 max-width: 100% !important;
                 width: 100vw !important;
-                scroll-snap-align: start;
-                margin: 0;
-                box-sizing: border-box;
+                scroll-snap-align: start !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
             }
             
             .review-card {
@@ -3766,18 +3771,21 @@
             #services .service-card > div[style*="width: 60px"],
             #services .service-card > div[style*="60px"],
             #services .service-card > div:first-child {
-                width: 32px !important;
-                height: 32px !important;
-                min-width: 32px !important;
-                min-height: 32px !important;
-                padding: 4px !important;
+                width: 80px !important;
+                height: 80px !important;
+                min-width: 80px !important;
+                min-height: 80px !important;
+                padding: 12px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                margin-bottom: 20px !important;
             }
             
             #services .service-card > div[style*="width: 60px"] img,
             #services .service-card > div[style*="60px"] img,
             #services .service-card > div:first-child img {
                 max-width: 100% !important;
-                max-height: 24px !important;
+                max-height: 56px !important;
                 width: auto !important;
                 height: auto !important;
                 object-fit: contain !important;
@@ -3786,10 +3794,25 @@
             /* Центрирование заголовков и текста в карточках услуг на мобильных */
             #services .service-card h3 {
                 text-align: center !important;
+                font-size: 18px !important;
+                margin-bottom: 12px !important;
             }
             
             #services .service-card p {
                 text-align: center !important;
+                font-size: 13px !important;
+                margin-bottom: 16px !important;
+            }
+            
+            /* Service card padding and sizing on mobile */
+            #services .service-card {
+                padding: 24px 20px !important;
+                min-height: auto !important;
+            }
+            
+            #services .service-card .btn-primary {
+                padding: 10px 20px !important;
+                font-size: 14px !important;
             }
             
             /* Центрирование логотипа в карточке */
