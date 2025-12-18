@@ -3733,7 +3733,9 @@
             /* Services на мобильных - горизонтальный скролл */
             #services .grid.md\\:grid-cols-3,
             #services .grid,
-            #services div[class*="grid"] {
+            #services div[class*="grid"],
+            #services div.grid,
+            #services div[style*="align-items"] {
                 display: flex !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
@@ -3745,19 +3747,68 @@
                 padding: 0 !important;
                 scroll-behavior: smooth !important;
                 flex-wrap: nowrap !important;
+                align-items: stretch !important;
+                position: relative !important;
+            }
+            
+            /* Стрелки для скролла карточек услуг на мобильных */
+            #services .services-scroll-container {
+                position: relative;
+            }
+            
+            #services .services-scroll-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 40px;
+                height: 40px;
+                background: rgba(22, 132, 145, 0.9);
+                border: none;
+                border-radius: 50%;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+            
+            #services .services-scroll-arrow:hover {
+                background: rgba(22, 132, 145, 1);
+                transform: translateY(-50%) scale(1.1);
+            }
+            
+            #services .services-scroll-arrow-left {
+                left: 10px;
+            }
+            
+            #services .services-scroll-arrow-right {
+                right: 10px;
+            }
+            
+            @media (max-width: 768px) {
+                #services .services-scroll-arrow {
+                    display: flex;
+                }
             }
             
             #services .grid.md\\:grid-cols-3::-webkit-scrollbar,
             #services .grid::-webkit-scrollbar,
-            #services div[class*="grid"]::-webkit-scrollbar {
+            #services div[class*="grid"]::-webkit-scrollbar,
+            #services div.grid::-webkit-scrollbar {
                 display: none !important;
             }
             
             #services .grid.md\\:grid-cols-3 > .service-card,
             #services .grid > .service-card,
             #services div[class*="grid"] > .service-card,
+            #services div.grid > .service-card,
             #services .grid.md\\:grid-cols-3 > div,
-            #services .grid > div {
+            #services .grid > div,
+            #services div[class*="grid"] > div {
                 flex: 0 0 100% !important;
                 min-width: 100% !important;
                 max-width: 100% !important;
@@ -4066,7 +4117,7 @@
             
             /* Поднимаем блок "Кто мы" выше после акции */
             #about {
-                margin-top: -60px !important;
+                margin-top: -80px !important;
                 padding-top: 40px !important;
             }
             
@@ -5033,7 +5084,7 @@
         
         <div class="max-w-7xl mx-auto px-6" style="position: relative; z-index: 2;">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="slide-up premium-benefit-card" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 32px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
+                <div class="slide-up premium-benefit-card" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 24px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
                     <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 132, 145, 0.3), rgba(22, 132, 145, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(22, 132, 145, 0.3);">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--propellini-primary)" stroke-width="2">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -5044,7 +5095,7 @@
                     <p style="color: var(--propellini-text-secondary); font-size: 14px; font-family: 'Roboto', sans-serif; line-height: 1.6;">лет опыта в оклейке защитной пленкой</p>
                 </div>
                 
-                <div class="slide-up premium-benefit-card" style="animation-delay: 0.1s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 32px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
+                <div class="slide-up premium-benefit-card" style="animation-delay: 0.1s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 24px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
                     <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 132, 145, 0.3), rgba(22, 132, 145, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(22, 132, 145, 0.3);">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--propellini-primary)" stroke-width="2">
                             <path d="M9 12l2 2 4-4"/>
@@ -5058,7 +5109,7 @@
                     <p style="color: var(--propellini-text-secondary); font-size: 14px; font-family: 'Roboto', sans-serif; line-height: 1.6;">автомобилей оклеиваем ежегодно</p>
                 </div>
                 
-                <div class="slide-up premium-benefit-card" style="animation-delay: 0.2s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 32px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
+                <div class="slide-up premium-benefit-card" style="animation-delay: 0.2s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 24px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
                     <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 132, 145, 0.3), rgba(22, 132, 145, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(22, 132, 145, 0.3);">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--propellini-primary)" stroke-width="2">
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -5070,7 +5121,7 @@
                     <p style="color: var(--propellini-text-secondary); font-size: 14px; font-family: 'Roboto', sans-serif; line-height: 1.6;">лет гарантии на пленку премиум-класса</p>
                 </div>
                 
-                <div class="slide-up premium-benefit-card" style="animation-delay: 0.3s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 32px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
+                <div class="slide-up premium-benefit-card" style="animation-delay: 0.3s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 24px; border-radius: 12px; backdrop-filter: none; transition: all 0.3s ease; text-align: center;">
                     <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(22, 132, 145, 0.3), rgba(22, 132, 145, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(22, 132, 145, 0.3);">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--propellini-primary)" stroke-width="2">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -5173,33 +5224,33 @@
                     
                     <div class="grid md:grid-cols-2 gap-6">
                         <!-- Карточка 1 -->
-                        <div class="advantage-card slide-up" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
-                            <h4 class="text-xl font-bold mb-3" style="color: var(--propellini-text); font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Мастерство в деталях</h4>
-                            <p class="mb-0" style="color: var(--propellini-text-secondary); line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
+                        <div class="advantage-card slide-up" style="background: rgba(18, 18, 18, 0.95); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
+                            <h4 class="text-xl font-bold mb-3" style="color: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Мастерство в деталях</h4>
+                            <p class="mb-0" style="color: #e0e0e0; line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
                                 Каждая услуга выполняется с филигранной точностью, чтобы ваш автомобиль выглядел безупречно. Уделяем внимание мельчайшим нюансам, которые другие могут упустить
                             </p>
                         </div>
 
                         <!-- Карточка 2 -->
-                        <div class="advantage-card slide-up" style="animation-delay: 0.1s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
-                            <h4 class="text-xl font-bold mb-3" style="color: var(--propellini-text); font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Современные технологии</h4>
-                            <p class="mb-0" style="color: var(--propellini-text-secondary); line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
+                        <div class="advantage-card slide-up" style="animation-delay: 0.1s; background: rgba(18, 18, 18, 0.95); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
+                            <h4 class="text-xl font-bold mb-3" style="color: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Современные технологии</h4>
+                            <p class="mb-0" style="color: #e0e0e0; line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
                                 Мы используем передовые материалы и оборудование, включая нанопокрытия, которые обеспечивают долговременную защиту и сохраняют идеальный внешний вид вашего автомобиля
                             </p>
                         </div>
 
                         <!-- Карточка 3 -->
-                        <div class="advantage-card slide-up" style="animation-delay: 0.2s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
-                            <h4 class="text-xl font-bold mb-3" style="color: var(--propellini-text); font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Индивидуальный подход</h4>
-                            <p class="mb-0" style="color: var(--propellini-text-secondary); line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
+                        <div class="advantage-card slide-up" style="animation-delay: 0.2s; background: rgba(18, 18, 18, 0.95); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
+                            <h4 class="text-xl font-bold mb-3" style="color: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Индивидуальный подход</h4>
+                            <p class="mb-0" style="color: #e0e0e0; line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
                                 Каждый автомобиль уникален, как и его владелец, поэтому мы подбираем решения, которые идеально подходят для вашего автомобиля и ваших пожеланий
                             </p>
                         </div>
 
                         <!-- Карточка 4 -->
-                        <div class="advantage-card slide-up" style="animation-delay: 0.3s; background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
-                            <h4 class="text-xl font-bold mb-3" style="color: var(--propellini-text); font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Клиентоориентированный сервис</h4>
-                            <p class="mb-0" style="color: var(--propellini-text-secondary); line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
+                        <div class="advantage-card slide-up" style="animation-delay: 0.3s; background: rgba(18, 18, 18, 0.95); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none;">
+                            <h4 class="text-xl font-bold mb-3" style="color: #ffffff; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.01em;">Клиентоориентированный сервис</h4>
+                            <p class="mb-0" style="color: #e0e0e0; line-height: 1.6; font-size: 16px; font-family: 'Roboto', sans-serif;">
                                 Наша цель — превзойти ваши ожидания. Удобное расписание, прозрачное ценообразование и внимание к каждому клиенту — это наш стандарт
                             </p>
                         </div>
@@ -5250,7 +5301,18 @@
                     </p>
                     
                     <!-- Карточки услуг -->
-                    <div class="grid md:grid-cols-3 gap-6" style="align-items: stretch;">
+                    <div class="services-scroll-container" style="position: relative;">
+                        <button class="services-scroll-arrow services-scroll-arrow-left" onclick="scrollServicesLeft()" aria-label="Прокрутить влево">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <button class="services-scroll-arrow services-scroll-arrow-right" onclick="scrollServicesRight()" aria-label="Прокрутить вправо">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18l6-6-6-6"/>
+                            </svg>
+                        </button>
+                        <div class="grid md:grid-cols-3 gap-6" style="align-items: stretch;" id="servicesGrid">
                         <!-- Карточка 1 -->
                         <div class="service-card slide-up" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none; display: flex; flex-direction: column;">
                             <div style="width: 60px; height: 60px; background: rgba(22, 132, 145, 0.1); border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; padding: 8px;">
@@ -5292,6 +5354,7 @@
                             </p>
                             <button class="btn-primary btn-shimmer" style="padding: 12px 24px; font-size: 12px; width: 100%; margin-top: auto;">Заказать</button>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -5301,9 +5364,9 @@
     <!-- Калькулятор -->
     <section class="section" id="calculator" style="background: var(--propellini-dark-secondary); padding-bottom: 0; margin-bottom: 0;">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 slide-up">
+            <div class="text-center mb-8 slide-up">
                 <h2 class="section-title">Калькулятор стоимости</h2>
-                <p class="section-subtitle max-w-3xl mx-auto mb-12">
+                <p class="section-subtitle max-w-3xl mx-auto mb-6">
                     Рассчитайте стоимость оклейки вашего автомобиля антигравийной пленкой
                 </p>
             </div>
@@ -5808,8 +5871,8 @@
     <section class="section" id="showroom" style="background: #f8f9fa; color: #0a0a0a;">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-8 slide-up">
-                <div class="text-sm mb-2" style="color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.02em; font-family: 'Montserrat', sans-serif; font-weight: 800;">Салон</div>
-                <h2 class="text-4xl font-light mb-4" style="color: #0a0a0a; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.02em;">Комфортная зона ожидания</h2>
+                <div class="text-sm mb-2" style="color: #000000; text-transform: uppercase; letter-spacing: 0.02em; font-family: 'Montserrat', sans-serif; font-weight: 800;">Салон</div>
+                <h2 class="text-4xl font-light mb-4" style="color: #000000; font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.02em;">Комфортная зона ожидания</h2>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -7410,6 +7473,23 @@
             ]
         }
     }
+    </script>
+    
+    <script>
+        // Функции для скролла карточек услуг
+        function scrollServicesLeft() {
+            const grid = document.getElementById('servicesGrid');
+            if (grid) {
+                grid.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+            }
+        }
+        
+        function scrollServicesRight() {
+            const grid = document.getElementById('servicesGrid');
+            if (grid) {
+                grid.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
