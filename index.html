@@ -1742,7 +1742,7 @@
 
         /* Gap для навигации */
         .nav-links-wrapper {
-            gap: 28px;
+            gap: 42px;
         }
 
         @media (max-width: 768px) {
@@ -3982,8 +3982,19 @@
                 padding-left: 0 !important;
                 margin-top: 24px;
             }
+            .map-container {
+                padding: 0 0 40px 0;
+            }
+            
             .map-container iframe {
                 height: 400px;
+                border-radius: 0;
+            }
+            
+            /* Поднимаем блок "Кто мы" выше после акции */
+            #about {
+                margin-top: -60px !important;
+                padding-top: 40px !important;
             }
             
             .grid.md\\:grid-cols-2 {
