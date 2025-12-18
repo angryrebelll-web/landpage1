@@ -3726,7 +3726,8 @@
             
             /* Логотипы пленок в карточках услуг на мобильных */
             #services .service-card > div[style*="width: 60px"],
-            #services .service-card > div[style*="60px"] {
+            #services .service-card > div[style*="60px"],
+            #services .service-card > div:first-child {
                 width: 32px !important;
                 height: 32px !important;
                 min-width: 32px !important;
@@ -3735,11 +3736,13 @@
             }
             
             #services .service-card > div[style*="width: 60px"] img,
-            #services .service-card > div[style*="60px"] img {
+            #services .service-card > div[style*="60px"] img,
+            #services .service-card > div:first-child img {
                 max-width: 100% !important;
                 max-height: 24px !important;
                 width: auto !important;
                 height: auto !important;
+                object-fit: contain !important;
             }
             
             /* Центрирование заголовков и текста в карточках услуг на мобильных */
