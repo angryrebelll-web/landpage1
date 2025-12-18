@@ -3626,16 +3626,43 @@
                 gap: 16px !important;
             }
             
-            /* Reviews на мобильных */
-            .reviews-grid,
-            .grid.md\\:grid-cols-3 {
-                grid-template-columns: 1fr !important;
-                gap: 20px;
+            /* Reviews на мобильных - горизонтальный скролл */
+            #reviews .grid.md\\:grid-cols-3 {
+                display: flex !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                gap: 0;
+                padding: 0;
+                scroll-behavior: smooth;
+            }
+            
+            #reviews .grid.md\\:grid-cols-3::-webkit-scrollbar {
+                display: none;
+            }
+            
+            #reviews .grid.md\\:grid-cols-3 > .review-item,
+            #reviews .grid.md\\:grid-cols-3 > a {
+                flex: 0 0 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                width: 100vw !important;
+                scroll-snap-align: start;
+                margin: 0;
+                box-sizing: border-box;
             }
             
             .review-card {
                 padding: 20px;
                 width: 100% !important;
+            }
+            
+            #reviews .max-w-7xl {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
             
             /* Showroom на мобильных */
@@ -3672,32 +3699,54 @@
                 flex: 0 0 100% !important;
                 min-width: 100% !important;
                 max-width: 100% !important;
-                width: 100% !important;
+                width: 100vw !important;
                 scroll-snap-align: start;
                 margin: 0;
                 border-radius: 0;
+                box-sizing: border-box;
+            }
+            
+            #services .max-w-7xl {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            
+            #services .grid.md\\:grid-cols-12 {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
             
             /* Логотипы пленок в карточках услуг на мобильных */
-            #services .service-card > div:first-child {
-                width: 40px !important;
-                height: 40px !important;
-                min-width: 40px !important;
-                min-height: 40px !important;
+            #services .service-card > div[style*="width: 60px"],
+            #services .service-card > div[style*="60px"] {
+                width: 32px !important;
+                height: 32px !important;
+                min-width: 32px !important;
+                min-height: 32px !important;
+                padding: 4px !important;
             }
             
-            #services .service-card > div:first-child img {
+            #services .service-card > div[style*="width: 60px"] img,
+            #services .service-card > div[style*="60px"] img {
                 max-width: 100% !important;
-                max-height: 32px !important;
+                max-height: 24px !important;
+                width: auto !important;
+                height: auto !important;
             }
             
-            /* Центрирование заголовков в карточках услуг на мобильных */
+            /* Центрирование заголовков и текста в карточках услуг на мобильных */
             #services .service-card h3 {
                 text-align: center !important;
             }
             
             #services .service-card p {
                 text-align: center !important;
+            }
+            
+            /* Центрирование логотипа в карточке */
+            #services .service-card > div:first-child {
+                margin-left: auto !important;
+                margin-right: auto !important;
             }
             
             .service-grid {
@@ -5794,7 +5843,7 @@
         <div class="map-container">
             <iframe src="https://yandex.ru/map-widget/v1/?ll=37.449939%2C55.806733&z=18&pt=37.449939%2C55.806733,pm2rdl"
                     width="100%"
-                    height="100%"
+                    height="500"
                     frameborder="0"
                     allowfullscreen="true"
                     loading="lazy"
