@@ -3729,32 +3729,35 @@
             }
             
             /* Services на мобильных - горизонтальный скролл */
-            #services .grid.md\\:grid-cols-3 {
+            #services .grid.md\\:grid-cols-3,
+            #services .grid {
                 display: flex !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                gap: 0;
-                padding: 0;
-                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory !important;
+                -webkit-overflow-scrolling: touch !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
+                gap: 0 !important;
+                padding: 0 !important;
+                scroll-behavior: smooth !important;
             }
             
-            #services .grid.md\\:grid-cols-3::-webkit-scrollbar {
-                display: none;
+            #services .grid.md\\:grid-cols-3::-webkit-scrollbar,
+            #services .grid::-webkit-scrollbar {
+                display: none !important;
             }
             
-            #services .grid.md\\:grid-cols-3 > .service-card {
+            #services .grid.md\\:grid-cols-3 > .service-card,
+            #services .grid > .service-card {
                 flex: 0 0 100% !important;
                 min-width: 100% !important;
                 max-width: 100% !important;
                 width: 100vw !important;
-                scroll-snap-align: start;
-                margin: 0;
-                border-radius: 0;
-                box-sizing: border-box;
+                scroll-snap-align: start !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-sizing: border-box !important;
             }
             
             #services .max-w-7xl {
