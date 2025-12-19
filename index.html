@@ -3854,9 +3854,17 @@
             }
             
             /* Reviews на мобильных - горизонтальный скролл */
-            #reviews .grid.md\\:grid-cols-3,
-            #reviews .grid {
+            #reviews .reviews-scroll-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            #reviews #reviewsGrid,
+            #reviews .grid.md\\:grid-cols-3[id="reviewsGrid"],
+            #reviews .grid[id="reviewsGrid"] {
                 display: flex !important;
+                flex-direction: row !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
                 scroll-snap-type: x mandatory !important;
@@ -3865,19 +3873,19 @@
                 -ms-overflow-style: none !important;
                 gap: 0 !important;
                 padding: 0 !important;
+                margin: 0 !important;
                 scroll-behavior: smooth !important;
+                flex-wrap: nowrap !important;
+                width: 100% !important;
             }
             
-            #reviews .grid.md\\:grid-cols-3::-webkit-scrollbar,
-            #reviews .grid::-webkit-scrollbar {
+            #reviews #reviewsGrid::-webkit-scrollbar {
                 display: none !important;
             }
             
-            #reviews .grid.md\\:grid-cols-3 > .review-item,
-            #reviews .grid.md\\:grid-cols-3 > a,
-            #reviews .grid > .review-item,
-            #reviews .grid > a,
-            #reviews .grid > div {
+            #reviews #reviewsGrid > a,
+            #reviews #reviewsGrid > .review-item,
+            #reviews #reviewsGrid > div {
                 flex: 0 0 100% !important;
                 min-width: 100% !important;
                 max-width: 100% !important;
@@ -3887,39 +3895,34 @@
                 box-sizing: border-box !important;
             }
             
-            .review-card {
-                padding: 20px;
+            #reviews .review-card {
+                padding: 20px !important;
                 width: 100% !important;
             }
             
             #reviews .max-w-7xl {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
-            }
-            
-            /* Стрелки для скролла отзывов на мобильных */
-            #reviews .reviews-scroll-container {
-                position: relative;
+                overflow: hidden !important;
             }
             
             #reviews .reviews-scroll-arrow {
+                display: flex !important;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 10;
-                width: 40px;
-                height: 40px;
+                width: 44px;
+                height: 44px;
                 background: rgba(22, 132, 145, 0.9);
                 border: none;
                 border-radius: 50%;
                 color: white;
-                font-size: 20px;
-                cursor: pointer;
-                display: none;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
             }
             
             #reviews .reviews-scroll-arrow:hover {
@@ -3935,12 +3938,6 @@
                 right: 10px;
             }
             
-            @media (max-width: 768px) {
-                #reviews .reviews-scroll-arrow {
-                    display: flex;
-                }
-            }
-            
             /* Showroom на мобильных */
             .showroom-gallery {
                 grid-template-columns: 1fr;
@@ -3954,12 +3951,17 @@
             }
             
             /* Services на мобильных - горизонтальный скролл */
-            #services .grid.md\\:grid-cols-3,
-            #services .grid,
-            #services div[class*="grid"],
-            #services div.grid,
-            #services div[style*="align-items"] {
+            #services .services-scroll-container {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            #services #servicesGrid,
+            #services .grid.md\\:grid-cols-3[id="servicesGrid"],
+            #services .grid[id="servicesGrid"] {
                 display: flex !important;
+                flex-direction: row !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
                 scroll-snap-type: x mandatory !important;
@@ -3968,35 +3970,53 @@
                 -ms-overflow-style: none !important;
                 gap: 0 !important;
                 padding: 0 !important;
+                margin: 0 !important;
                 scroll-behavior: smooth !important;
                 flex-wrap: nowrap !important;
                 align-items: stretch !important;
-                position: relative !important;
+                width: 100% !important;
             }
             
-            /* Стрелки для скролла карточек услуг на мобильных */
-            #services .services-scroll-container {
-                position: relative;
+            #services #servicesGrid::-webkit-scrollbar {
+                display: none !important;
+            }
+            
+            #services #servicesGrid > .service-card,
+            #services #servicesGrid > div {
+                flex: 0 0 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                width: 100vw !important;
+                scroll-snap-align: start !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-sizing: border-box !important;
+                padding: 20px !important;
+            }
+            
+            #services .max-w-7xl {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                overflow: hidden !important;
             }
             
             #services .services-scroll-arrow {
+                display: flex !important;
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 10;
-                width: 40px;
-                height: 40px;
+                width: 44px;
+                height: 44px;
                 background: rgba(22, 132, 145, 0.9);
                 border: none;
                 border-radius: 50%;
                 color: white;
-                font-size: 20px;
-                cursor: pointer;
-                display: none;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                cursor: pointer;
             }
             
             #services .services-scroll-arrow:hover {
@@ -4010,41 +4030,6 @@
             
             #services .services-scroll-arrow-right {
                 right: 10px;
-            }
-            
-            @media (max-width: 768px) {
-                #services .services-scroll-arrow {
-                    display: flex;
-                }
-            }
-            
-            #services .grid.md\\:grid-cols-3::-webkit-scrollbar,
-            #services .grid::-webkit-scrollbar,
-            #services div[class*="grid"]::-webkit-scrollbar,
-            #services div.grid::-webkit-scrollbar {
-                display: none !important;
-            }
-            
-            #services .grid.md\\:grid-cols-3 > .service-card,
-            #services .grid > .service-card,
-            #services div[class*="grid"] > .service-card,
-            #services div.grid > .service-card,
-            #services .grid.md\\:grid-cols-3 > div,
-            #services .grid > div,
-            #services div[class*="grid"] > div {
-                flex: 0 0 100% !important;
-                min-width: 100% !important;
-                max-width: 100% !important;
-                width: 100vw !important;
-                scroll-snap-align: start !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                box-sizing: border-box !important;
-            }
-            
-            #services .max-w-7xl {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
             }
             
             #services .grid.md\\:grid-cols-12 {
@@ -4590,22 +4575,34 @@
 
         @media (max-width: 375px) {
             .hero-title {
-                font-size: 28px;
-                line-height: 32px;
+                font-size: 24px !important;
+                line-height: 28px !important;
                 margin-bottom: 10px;
-                padding: 0 20px;
-                max-width: 100%;
+                padding: 0 12px !important;
+                max-width: 100% !important;
                 text-align: center !important;
-                margin-left: auto;
-                margin-right: auto;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                hyphens: auto !important;
+                white-space: normal !important;
+                overflow: visible !important;
             }
             
             .hero-title .word-animate {
-                display: inline-block;
-                word-break: keep-all;
+                display: inline !important;
+                white-space: normal !important;
+                word-break: keep-all !important;
+                max-width: 100% !important;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 20px !important;
+                line-height: 24px !important;
+                padding: 0 10px !important;
             }
             
             .hero-top {
@@ -5393,6 +5390,48 @@
         @media (prefers-reduced-motion: reduce) {
             .form-loading::after {
                 animation: none;
+            }
+        }
+        
+        /* Десктопы - обычная сетка */
+        @media (min-width: 1025px) {
+            #services #servicesGrid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                overflow-x: visible !important;
+                gap: 24px !important;
+            }
+            
+            #reviews #reviewsGrid {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                overflow-x: visible !important;
+                gap: 24px !important;
+            }
+            
+            #services .services-scroll-arrow,
+            #reviews .reviews-scroll-arrow {
+                display: none !important;
+            }
+        }
+        
+        /* Планшеты - 2 колонки */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            #services #servicesGrid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                overflow-x: visible !important;
+            }
+            
+            #reviews #reviewsGrid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                overflow-x: visible !important;
+            }
+            
+            #services .services-scroll-arrow,
+            #reviews .reviews-scroll-arrow {
+                display: none !important;
             }
         }
     </style>
