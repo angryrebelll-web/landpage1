@@ -3859,6 +3859,7 @@
                 width: 100%;
                 overflow: hidden;
                 padding: 0 16px !important;
+                height: auto !important;
             }
             
             #reviews #reviewsGrid,
@@ -3880,6 +3881,9 @@
                 width: 100% !important;
                 touch-action: pan-x !important;
                 overscroll-behavior-x: contain !important;
+                overscroll-behavior-y: none !important;
+                align-items: flex-start !important;
+                height: auto !important;
             }
             
             #reviews #reviewsGrid::-webkit-scrollbar {
@@ -3898,6 +3902,8 @@
                 box-sizing: border-box !important;
                 touch-action: pan-x !important;
                 user-select: none !important;
+                flex-shrink: 0 !important;
+                height: auto !important;
             }
             
             #reviews #reviewsGrid > a:first-child,
@@ -3973,6 +3979,7 @@
                 width: 100%;
                 overflow: hidden;
                 padding: 0 16px !important;
+                height: auto !important;
             }
             
             #services #servicesGrid,
@@ -3991,10 +3998,12 @@
                 margin: 0 !important;
                 scroll-behavior: smooth !important;
                 flex-wrap: nowrap !important;
-                align-items: stretch !important;
+                align-items: flex-start !important;
                 width: 100% !important;
                 touch-action: pan-x !important;
                 overscroll-behavior-x: contain !important;
+                overscroll-behavior-y: none !important;
+                height: auto !important;
             }
             
             #services #servicesGrid::-webkit-scrollbar {
@@ -4014,6 +4023,8 @@
                 padding: 24px !important;
                 touch-action: pan-x !important;
                 user-select: none !important;
+                flex-shrink: 0 !important;
+                height: auto !important;
             }
             
             #services #servicesGrid > .service-card:first-child,
