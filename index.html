@@ -3856,10 +3856,12 @@
             /* Reviews на мобильных - горизонтальный скролл */
             #reviews .reviews-scroll-container {
                 position: relative;
-                width: 100%;
+                width: 100vw !important;
                 overflow: hidden;
                 padding: 0 16px !important;
                 height: auto !important;
+                margin-left: calc(-50vw + 50%) !important;
+                margin-right: calc(-50vw + 50%) !important;
             }
             
             #reviews #reviewsGrid,
@@ -3893,10 +3895,10 @@
             #reviews #reviewsGrid > a,
             #reviews #reviewsGrid > .review-item,
             #reviews #reviewsGrid > div {
-                flex: 0 0 calc(100% - 32px) !important;
-                min-width: calc(100% - 32px) !important;
-                max-width: calc(100% - 32px) !important;
-                width: calc(100% - 32px) !important;
+                flex: 0 0 calc(100vw - 32px) !important;
+                min-width: calc(100vw - 32px) !important;
+                max-width: calc(100vw - 32px) !important;
+                width: calc(100vw - 32px) !important;
                 scroll-snap-align: start !important;
                 margin-right: 16px !important;
                 box-sizing: border-box !important;
@@ -3976,10 +3978,12 @@
             /* Services на мобильных - горизонтальный скролл */
             #services .services-scroll-container {
                 position: relative;
-                width: 100%;
+                width: 100vw !important;
                 overflow: hidden;
                 padding: 0 16px !important;
                 height: auto !important;
+                margin-left: calc(-50vw + 50%) !important;
+                margin-right: calc(-50vw + 50%) !important;
             }
             
             #services #servicesGrid,
@@ -4012,10 +4016,10 @@
             
             #services #servicesGrid > .service-card,
             #services #servicesGrid > div {
-                flex: 0 0 calc(100% - 32px) !important;
-                min-width: calc(100% - 32px) !important;
-                max-width: calc(100% - 32px) !important;
-                width: calc(100% - 32px) !important;
+                flex: 0 0 calc(100vw - 32px) !important;
+                min-width: calc(100vw - 32px) !important;
+                max-width: calc(100vw - 32px) !important;
+                width: calc(100vw - 32px) !important;
                 scroll-snap-align: start !important;
                 margin-right: 16px !important;
                 border-radius: 12px !important;
@@ -5900,7 +5904,7 @@
                                 <path d="M9 18l6-6-6-6"/>
                             </svg>
                         </button>
-                        <div class="grid md:grid-cols-3 gap-6" style="align-items: stretch;" id="servicesGrid">
+                        <div class="grid md:grid-cols-3 gap-6" id="servicesGrid">
                         <!-- Карточка 1 -->
                         <div class="service-card slide-up" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none; display: flex; flex-direction: column;">
                             <div style="width: 60px; height: 60px; background: rgba(22, 132, 145, 0.1); border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; padding: 8px;">
