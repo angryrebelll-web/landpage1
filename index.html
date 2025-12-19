@@ -3928,6 +3928,33 @@
                 display: none !important;
             }
             
+            /* Индикаторы галереи для отзывов */
+            #reviews .gallery-indicators {
+                display: flex !important;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 24px;
+                padding: 0 16px;
+            }
+            
+            #reviews .gallery-indicator {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgba(22, 132, 145, 0.3);
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                padding: 0;
+                flex-shrink: 0;
+            }
+            
+            #reviews .gallery-indicator.active {
+                background: var(--propellini-primary);
+                width: 24px;
+                border-radius: 4px;
+            }
+            
             /* Showroom на мобильных */
             .showroom-gallery {
                 grid-template-columns: 1fr;
@@ -4017,6 +4044,33 @@
             
             #services .services-scroll-arrow {
                 display: none !important;
+            }
+            
+            /* Индикаторы галереи для услуг */
+            #services .gallery-indicators {
+                display: flex !important;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 24px;
+                padding: 0 16px;
+            }
+            
+            #services .gallery-indicator {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgba(22, 132, 145, 0.3);
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                padding: 0;
+                flex-shrink: 0;
+            }
+            
+            #services .gallery-indicator.active {
+                background: var(--propellini-primary);
+                width: 24px;
+                border-radius: 4px;
             }
             
             #services .grid.md\\:grid-cols-12 {
@@ -5400,6 +5454,11 @@
             #reviews .reviews-scroll-arrow {
                 display: none !important;
             }
+            
+            #services .gallery-indicators,
+            #reviews .gallery-indicators {
+                display: none !important;
+            }
         }
         
         /* Планшеты - 2 колонки */
@@ -5418,6 +5477,11 @@
             
             #services .services-scroll-arrow,
             #reviews .reviews-scroll-arrow {
+                display: none !important;
+            }
+            
+            #services .gallery-indicators,
+            #reviews .gallery-indicators {
                 display: none !important;
             }
         }
@@ -5868,6 +5932,8 @@
                             <button class="btn-primary btn-shimmer" style="padding: 12px 24px; font-size: 12px; width: 100%; margin-top: auto;">Заказать</button>
                         </div>
                         </div>
+                        <!-- Индикаторы галереи для услуг -->
+                        <div class="gallery-indicators" id="servicesIndicators" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding: 0 16px;"></div>
                     </div>
                 </div>
             </div>
@@ -6389,6 +6455,8 @@
                     </div>
                 </a>
                 </div>
+                <!-- Индикаторы галереи для отзывов -->
+                <div class="gallery-indicators" id="reviewsIndicators" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding: 0 16px;"></div>
             </div>
         </div>
     </section>
@@ -8050,6 +8118,103 @@
             }
         }
         
+        // Инициализация индикаторов галереи
+        function initGalleryIndicators() {
+            const isMobile = window.innerWidth <= 768;
+            
+            // Индикаторы для услуг
+            const servicesGrid = document.getElementById('servicesGrid');
+            const servicesIndicators = document.getElementById('servicesIndicators');
+            
+            if (servicesGrid && servicesIndicators) {
+                if (!isMobile) {
+                    servicesIndicators.style.display = 'none';
+                } else {
+                    servicesIndicators.style.display = 'flex';
+                    const cards = servicesGrid.querySelectorAll('.service-card, #servicesGrid > div');
+                    servicesIndicators.innerHTML = '';
+                    
+                    cards.forEach((card, index) => {
+                        const indicator = document.createElement('button');
+                        indicator.className = 'gallery-indicator' + (index === 0 ? ' active' : '');
+                        indicator.setAttribute('aria-label', `Перейти к карточке ${index + 1}`);
+                        indicator.addEventListener('click', () => {
+                            const cardWidth = card.offsetWidth + 16; // включая margin-right
+                            servicesGrid.scrollTo({
+                                left: cardWidth * index,
+                                behavior: 'smooth'
+                            });
+                        });
+                        servicesIndicators.appendChild(indicator);
+                    });
+                    
+                    // Отслеживание скролла для обновления индикаторов
+                    let scrollTimeout;
+                    servicesGrid.addEventListener('scroll', () => {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(() => {
+                            updateGalleryIndicators(servicesGrid, servicesIndicators, cards);
+                        }, 100);
+                    });
+                }
+            }
+            
+            // Индикаторы для отзывов
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            const reviewsIndicators = document.getElementById('reviewsIndicators');
+            
+            if (reviewsGrid && reviewsIndicators) {
+                if (!isMobile) {
+                    reviewsIndicators.style.display = 'none';
+                } else {
+                    reviewsIndicators.style.display = 'flex';
+                    const cards = reviewsGrid.querySelectorAll('a, .review-item, #reviewsGrid > div');
+                    reviewsIndicators.innerHTML = '';
+                    
+                    cards.forEach((card, index) => {
+                        const indicator = document.createElement('button');
+                        indicator.className = 'gallery-indicator' + (index === 0 ? ' active' : '');
+                        indicator.setAttribute('aria-label', `Перейти к отзыву ${index + 1}`);
+                        indicator.addEventListener('click', () => {
+                            const cardWidth = card.offsetWidth + 16; // включая margin-right
+                            reviewsGrid.scrollTo({
+                                left: cardWidth * index,
+                                behavior: 'smooth'
+                            });
+                        });
+                        reviewsIndicators.appendChild(indicator);
+                    });
+                    
+                    // Отслеживание скролла для обновления индикаторов
+                    let scrollTimeout;
+                    reviewsGrid.addEventListener('scroll', () => {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(() => {
+                            updateGalleryIndicators(reviewsGrid, reviewsIndicators, cards);
+                        }, 100);
+                    });
+                }
+            }
+        }
+        
+        // Обновление активного индикатора
+        function updateGalleryIndicators(grid, indicatorsContainer, cards) {
+            if (!grid || !indicatorsContainer || !cards.length) return;
+            
+            const scrollLeft = grid.scrollLeft;
+            const cardWidth = cards[0].offsetWidth + 16; // включая margin-right
+            const currentIndex = Math.round(scrollLeft / cardWidth);
+            
+            const indicators = indicatorsContainer.querySelectorAll('.gallery-indicator');
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
         // Функция для показа toast уведомлений
         function showToast(message) {
             // Удаляем предыдущее уведомление, если есть
@@ -8116,6 +8281,15 @@
         }
         
         // Обработка ошибок загрузки изображений
+        // Инициализация индикаторов галереи при загрузке и изменении размера
+        document.addEventListener('DOMContentLoaded', function() {
+            initGalleryIndicators();
+        });
+        
+        window.addEventListener('resize', function() {
+            initGalleryIndicators();
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('img');
             images.forEach(img => {
