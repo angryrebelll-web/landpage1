@@ -4061,6 +4061,100 @@
                 display: none !important;
             }
             
+            /* Stack Cards эффект для услуг на мобильных */
+            #services .services-scroll-container.stack-cards-mode {
+                position: relative;
+                height: 200vh !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            #services #servicesGrid.stack-cards-mode {
+                position: sticky;
+                top: 50vh;
+                transform: translateY(-50%);
+                height: 0;
+                width: 100%;
+                display: block !important;
+                overflow: visible !important;
+            }
+            
+            #services #servicesGrid.stack-cards-mode > .service-card,
+            #services #servicesGrid.stack-cards-mode > div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: calc(100vw - 32px) !important;
+                max-width: 350px !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 24px !important;
+                z-index: 3;
+                transition: transform 1.3s cubic-bezier(0.9, -0.2, 0.1, 1.2), 
+                            opacity 1.3s cubic-bezier(1, 0, 0, 1);
+                will-change: transform, opacity;
+            }
+            
+            #services #servicesGrid.stack-cards-mode > .service-card.slide-up,
+            #services #servicesGrid.stack-cards-mode > div.slide-up {
+                transform: translate(-50%, -260%);
+                opacity: 0;
+            }
+            
+            /* Stack Cards эффект для отзывов на мобильных */
+            #reviews .reviews-scroll-container.stack-cards-mode {
+                position: relative;
+                height: 200vh !important;
+                overflow: visible !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            #reviews #reviewsGrid.stack-cards-mode {
+                position: sticky;
+                top: 50vh;
+                transform: translateY(-50%);
+                height: 0;
+                width: 100%;
+                display: block !important;
+                overflow: visible !important;
+            }
+            
+            #reviews #reviewsGrid.stack-cards-mode > a,
+            #reviews #reviewsGrid.stack-cards-mode > .review-item,
+            #reviews #reviewsGrid.stack-cards-mode > div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: calc(100vw - 32px) !important;
+                max-width: 350px !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 24px !important;
+                z-index: 3;
+                transition: transform 1.3s cubic-bezier(0.9, -0.2, 0.1, 1.2), 
+                            opacity 1.3s cubic-bezier(1, 0, 0, 1);
+                will-change: transform, opacity;
+            }
+            
+            #reviews #reviewsGrid.stack-cards-mode > a.slide-up,
+            #reviews #reviewsGrid.stack-cards-mode > .review-item.slide-up,
+            #reviews #reviewsGrid.stack-cards-mode > div.slide-up {
+                transform: translate(-50%, -260%);
+                opacity: 0;
+            }
+            
+            /* Скрыть индикаторы и стрелки в stack cards режиме */
+            #services .services-scroll-container.stack-cards-mode .gallery-indicators,
+            #services .services-scroll-container.stack-cards-mode .services-scroll-arrow,
+            #reviews .reviews-scroll-container.stack-cards-mode .gallery-indicators,
+            #reviews .reviews-scroll-container.stack-cards-mode .reviews-scroll-arrow {
+                display: none !important;
+            }
+            
             /* Индикаторы галереи для услуг */
             #services .gallery-indicators {
                 display: flex !important;
@@ -8230,6 +8324,86 @@
             });
         }
         
+        // Stack Cards эффект для услуг и отзывов на мобильных
+        function initStackCardsEffect() {
+            if (window.innerWidth > 768) return; // Только для мобильных
+            
+            const servicesContainer = document.querySelector('#services .services-scroll-container');
+            const servicesGrid = document.getElementById('servicesGrid');
+            const servicesCards = servicesGrid ? Array.from(servicesGrid.querySelectorAll('.service-card, #servicesGrid > div')) : [];
+            
+            const reviewsContainer = document.querySelector('#reviews .reviews-scroll-container');
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            const reviewsCards = reviewsGrid ? Array.from(reviewsGrid.querySelectorAll('a, .review-item, #reviewsGrid > div')) : [];
+            
+            // Активируем stack cards режим
+            if (servicesContainer && servicesGrid && servicesCards.length > 0) {
+                servicesContainer.classList.add('stack-cards-mode');
+                servicesGrid.classList.add('stack-cards-mode');
+            }
+            
+            if (reviewsContainer && reviewsGrid && reviewsCards.length > 0) {
+                reviewsContainer.classList.add('stack-cards-mode');
+                reviewsGrid.classList.add('stack-cards-mode');
+            }
+            
+            let lastScrollTop = 0;
+            
+            function handleStackCards(container, cards) {
+                if (!container || !cards.length) return;
+                
+                const containerRect = container.getBoundingClientRect();
+                const windowHeight = window.innerHeight + 300;
+                const scrollPosition = window.scrollY;
+                const scrollDown = scrollPosition > lastScrollTop;
+                lastScrollTop = scrollPosition <= 0 ? 0 : scrollPosition;
+                
+                const progress = Math.max(0, Math.min(1, (scrollPosition - containerRect.top + windowHeight) / (windowHeight * 2)));
+                
+                const numCards = cards.length;
+                for (let index = numCards - 1; index >= 0; index--) {
+                    const card = cards[index];
+                    if (index === numCards - 1) {
+                        // Последняя карточка поднимается быстрее
+                        if (scrollPosition > containerRect.top - windowHeight * 0.2) {
+                            card.classList.add('slide-up');
+                        } else {
+                            card.classList.remove('slide-up');
+                        }
+                    } else {
+                        const cardProgress = (numCards - index - 1) / (numCards - 1);
+                        if (scrollDown) {
+                            if (progress >= cardProgress) {
+                                card.classList.add('slide-up');
+                            } else {
+                                card.classList.remove('slide-up');
+                            }
+                        } else {
+                            if (progress > cardProgress) {
+                                card.classList.add('slide-up');
+                            } else {
+                                card.classList.remove('slide-up');
+                            }
+                        }
+                    }
+                }
+            }
+            
+            const scrollHandler = () => {
+                if (servicesContainer && servicesCards.length > 0) {
+                    handleStackCards(servicesContainer, servicesCards);
+                }
+                if (reviewsContainer && reviewsCards.length > 0) {
+                    handleStackCards(reviewsContainer, reviewsCards);
+                }
+            };
+            
+            document.addEventListener('scroll', scrollHandler, { passive: true });
+            
+            // Инициализация при загрузке
+            scrollHandler();
+        }
+        
         // Функция для показа toast уведомлений
         function showToast(message) {
             // Удаляем предыдущее уведомление, если есть
@@ -8296,13 +8470,48 @@
         }
         
         // Обработка ошибок загрузки изображений
-        // Инициализация индикаторов галереи при загрузке и изменении размера
+        // Инициализация индикаторов галереи или stack cards эффекта
+        function initCardsMode() {
+            const servicesContainer = document.querySelector('#services .services-scroll-container');
+            const servicesGrid = document.getElementById('servicesGrid');
+            const reviewsContainer = document.querySelector('#reviews .reviews-scroll-container');
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            
+            if (window.innerWidth <= 768) {
+                // Убираем классы stack-cards-mode если были
+                if (servicesContainer) servicesContainer.classList.remove('stack-cards-mode');
+                if (servicesGrid) servicesGrid.classList.remove('stack-cards-mode');
+                if (reviewsContainer) reviewsContainer.classList.remove('stack-cards-mode');
+                if (reviewsGrid) reviewsGrid.classList.remove('stack-cards-mode');
+                
+                // Инициализируем stack cards эффект
+                initStackCardsEffect();
+            } else {
+                // Убираем классы stack-cards-mode
+                if (servicesContainer) servicesContainer.classList.remove('stack-cards-mode');
+                if (servicesGrid) servicesGrid.classList.remove('stack-cards-mode');
+                if (reviewsContainer) reviewsContainer.classList.remove('stack-cards-mode');
+                if (reviewsGrid) reviewsGrid.classList.remove('stack-cards-mode');
+                
+                // Убираем класс slide-up со всех карточек
+                document.querySelectorAll('#services #servicesGrid > .service-card.slide-up, #services #servicesGrid > div.slide-up').forEach(card => {
+                    card.classList.remove('slide-up');
+                });
+                document.querySelectorAll('#reviews #reviewsGrid > a.slide-up, #reviews #reviewsGrid > .review-item.slide-up, #reviews #reviewsGrid > div.slide-up').forEach(card => {
+                    card.classList.remove('slide-up');
+                });
+                
+                // Инициализируем индикаторы галереи
+                initGalleryIndicators();
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
-            initGalleryIndicators();
+            initCardsMode();
         });
         
         window.addEventListener('resize', function() {
-            initGalleryIndicators();
+            initCardsMode();
         });
         
         document.addEventListener('DOMContentLoaded', function() {
