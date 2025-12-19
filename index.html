@@ -3848,7 +3848,7 @@
 
 
             /* Секции с карточками */
-            .grid {
+            .grid:not(#servicesGrid):not(#reviewsGrid) {
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
@@ -3858,6 +3858,7 @@
                 position: relative;
                 width: 100%;
                 overflow: hidden;
+                padding: 0 16px !important;
             }
             
             #reviews #reviewsGrid,
@@ -3877,6 +3878,8 @@
                 scroll-behavior: smooth !important;
                 flex-wrap: nowrap !important;
                 width: 100% !important;
+                touch-action: pan-x !important;
+                overscroll-behavior-x: contain !important;
             }
             
             #reviews #reviewsGrid::-webkit-scrollbar {
@@ -3886,18 +3889,33 @@
             #reviews #reviewsGrid > a,
             #reviews #reviewsGrid > .review-item,
             #reviews #reviewsGrid > div {
-                flex: 0 0 100% !important;
-                min-width: 100% !important;
-                max-width: 100% !important;
-                width: 100vw !important;
+                flex: 0 0 calc(100% - 32px) !important;
+                min-width: calc(100% - 32px) !important;
+                max-width: calc(100% - 32px) !important;
+                width: calc(100% - 32px) !important;
                 scroll-snap-align: start !important;
-                margin: 0 !important;
+                margin-right: 16px !important;
                 box-sizing: border-box !important;
+                touch-action: pan-x !important;
+                user-select: none !important;
+            }
+            
+            #reviews #reviewsGrid > a:first-child,
+            #reviews #reviewsGrid > .review-item:first-child,
+            #reviews #reviewsGrid > div:first-child {
+                margin-left: 0 !important;
+            }
+            
+            #reviews #reviewsGrid > a:last-child,
+            #reviews #reviewsGrid > .review-item:last-child,
+            #reviews #reviewsGrid > div:last-child {
+                margin-right: 0 !important;
             }
             
             #reviews .review-card {
-                padding: 20px !important;
+                padding: 24px !important;
                 width: 100% !important;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
             }
             
             #reviews .max-w-7xl {
@@ -3907,35 +3925,7 @@
             }
             
             #reviews .reviews-scroll-arrow {
-                display: flex !important;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 10;
-                width: 44px;
-                height: 44px;
-                background: rgba(22, 132, 145, 0.9);
-                border: none;
-                border-radius: 50%;
-                color: white;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                cursor: pointer;
-            }
-            
-            #reviews .reviews-scroll-arrow:hover {
-                background: rgba(22, 132, 145, 1);
-                transform: translateY(-50%) scale(1.1);
-            }
-            
-            #reviews .reviews-scroll-arrow-left {
-                left: 10px;
-            }
-            
-            #reviews .reviews-scroll-arrow-right {
-                right: 10px;
+                display: none !important;
             }
             
             /* Showroom на мобильных */
@@ -3955,6 +3945,7 @@
                 position: relative;
                 width: 100%;
                 overflow: hidden;
+                padding: 0 16px !important;
             }
             
             #services #servicesGrid,
@@ -3975,6 +3966,8 @@
                 flex-wrap: nowrap !important;
                 align-items: stretch !important;
                 width: 100% !important;
+                touch-action: pan-x !important;
+                overscroll-behavior-x: contain !important;
             }
             
             #services #servicesGrid::-webkit-scrollbar {
@@ -3983,15 +3976,37 @@
             
             #services #servicesGrid > .service-card,
             #services #servicesGrid > div {
-                flex: 0 0 100% !important;
-                min-width: 100% !important;
-                max-width: 100% !important;
-                width: 100vw !important;
+                flex: 0 0 calc(100% - 32px) !important;
+                min-width: calc(100% - 32px) !important;
+                max-width: calc(100% - 32px) !important;
+                width: calc(100% - 32px) !important;
                 scroll-snap-align: start !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
+                margin-right: 16px !important;
+                border-radius: 12px !important;
                 box-sizing: border-box !important;
-                padding: 20px !important;
+                padding: 24px !important;
+                touch-action: pan-x !important;
+                user-select: none !important;
+            }
+            
+            #services #servicesGrid > .service-card:first-child,
+            #services #servicesGrid > div:first-child {
+                margin-left: 0 !important;
+            }
+            
+            #services #servicesGrid > .service-card:last-child,
+            #services #servicesGrid > div:last-child {
+                margin-right: 0 !important;
+                padding-right: 0 !important;
+            }
+            
+            #services .service-card {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+                transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            }
+            
+            #services .service-card:active {
+                transform: scale(0.98) !important;
             }
             
             #services .max-w-7xl {
@@ -4001,35 +4016,7 @@
             }
             
             #services .services-scroll-arrow {
-                display: flex !important;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 10;
-                width: 44px;
-                height: 44px;
-                background: rgba(22, 132, 145, 0.9);
-                border: none;
-                border-radius: 50%;
-                color: white;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                cursor: pointer;
-            }
-            
-            #services .services-scroll-arrow:hover {
-                background: rgba(22, 132, 145, 1);
-                transform: translateY(-50%) scale(1.1);
-            }
-            
-            #services .services-scroll-arrow-left {
-                left: 10px;
-            }
-            
-            #services .services-scroll-arrow-right {
-                right: 10px;
+                display: none !important;
             }
             
             #services .grid.md\\:grid-cols-12 {
