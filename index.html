@@ -3470,7 +3470,7 @@
             }
             
             /* Упростить сетку */
-            .grid {
+            .grid:not(#servicesGrid):not(#reviewsGrid) {
                 display: flex;
                 flex-direction: column;
                 gap: var(--spacing-md) !important;
