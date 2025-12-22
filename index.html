@@ -3691,6 +3691,14 @@
                 overflow-x: hidden !important;
             }
             
+            /* ИСКЛЮЧЕНИЕ: Разрешаем скролл для контейнеров услуг и отзывов */
+            #services .services-scroll-container,
+            #reviews .reviews-scroll-container,
+            #services #servicesGrid,
+            #reviews #reviewsGrid {
+                overflow-x: visible !important;
+            }
+            
             /* Изображения и медиа */
             img, video, iframe, embed, object, picture {
                 max-width: 100% !important;
@@ -3857,7 +3865,8 @@
             #reviews .reviews-scroll-container {
                 position: relative;
                 width: 100vw !important;
-                overflow: hidden;
+                overflow-x: visible !important;
+                overflow-y: hidden !important;
                 padding: 0 16px !important;
                 height: auto !important;
                 margin-left: calc(-50vw + 50%) !important;
@@ -3929,7 +3938,8 @@
             #reviews .max-w-7xl {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
-                overflow: hidden !important;
+                overflow-x: visible !important;
+                overflow-y: hidden !important;
             }
             
             #reviews .reviews-scroll-arrow {
@@ -3979,7 +3989,8 @@
             #services .services-scroll-container {
                 position: relative;
                 width: 100vw !important;
-                overflow: hidden;
+                overflow-x: visible !important;
+                overflow-y: hidden !important;
                 padding: 0 16px !important;
                 height: auto !important;
                 margin-left: calc(-50vw + 50%) !important;
@@ -4054,11 +4065,56 @@
             #services .max-w-7xl {
                 padding-left: 0 !important;
                 padding-right: 0 !important;
-                overflow: hidden !important;
+                overflow-x: visible !important;
+                overflow-y: hidden !important;
             }
             
-            #services .services-scroll-arrow {
+            /* Скрываем старые стрелки (которые были на карточках) */
+            #services .services-scroll-arrow.services-scroll-arrow-left,
+            #services .services-scroll-arrow.services-scroll-arrow-right,
+            #reviews .reviews-scroll-arrow.reviews-scroll-arrow-left,
+            #reviews .reviews-scroll-arrow.reviews-scroll-arrow-right {
                 display: none !important;
+            }
+            
+            /* Показываем новые стрелки под карточками */
+            .services-scroll-arrows-mobile,
+            .reviews-scroll-arrows-mobile {
+                display: flex !important;
+                justify-content: center;
+                gap: 16px;
+                margin-top: 20px;
+                padding: 0 16px;
+            }
+            
+            /* Стили для стрелок под карточками */
+            .services-scroll-arrows-mobile .services-scroll-arrow,
+            .reviews-scroll-arrows-mobile .reviews-scroll-arrow {
+                position: static !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: rgba(22, 132, 145, 0.9) !important;
+                border: 2px solid rgba(22, 132, 145, 0.5);
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 10;
+            }
+            
+            .services-scroll-arrows-mobile .services-scroll-arrow:hover,
+            .reviews-scroll-arrows-mobile .reviews-scroll-arrow:hover {
+                background: var(--propellini-primary) !important;
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(22, 132, 145, 0.4);
+            }
+            
+            .services-scroll-arrows-mobile .services-scroll-arrow:active,
+            .reviews-scroll-arrows-mobile .reviews-scroll-arrow:active {
+                transform: scale(0.95);
             }
             
             /* Stack Cards эффект для услуг на мобильных */
@@ -5568,6 +5624,12 @@
             #reviews .gallery-indicators {
                 display: none !important;
             }
+            
+            /* Скрываем мобильные стрелки на десктопе */
+            .services-scroll-arrows-mobile,
+            .reviews-scroll-arrows-mobile {
+                display: none !important;
+            }
         }
         
         /* Планшеты - 2 колонки */
@@ -5591,6 +5653,12 @@
             
             #services .gallery-indicators,
             #reviews .gallery-indicators {
+                display: none !important;
+            }
+            
+            /* Скрываем мобильные стрелки на планшетах */
+            .services-scroll-arrows-mobile,
+            .reviews-scroll-arrows-mobile {
                 display: none !important;
             }
         }
@@ -5988,16 +6056,6 @@
                     
                     <!-- Карточки услуг -->
                     <div class="services-scroll-container" style="position: relative;">
-                        <button class="services-scroll-arrow services-scroll-arrow-left" onclick="scrollServicesLeft()" aria-label="Прокрутить влево">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M15 18l-6-6 6-6"/>
-                            </svg>
-                        </button>
-                        <button class="services-scroll-arrow services-scroll-arrow-right" onclick="scrollServicesRight()" aria-label="Прокрутить вправо">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 18l6-6-6-6"/>
-                            </svg>
-                        </button>
                         <div class="grid md:grid-cols-3 gap-6" id="servicesGrid">
                         <!-- Карточка 1 -->
                         <div class="service-card slide-up" style="background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(22, 132, 145, 0.22); padding: 30px; border-radius: 12px; transition: all 0.3s ease; backdrop-filter: none; display: flex; flex-direction: column;">
@@ -6043,6 +6101,19 @@
                         </div>
                         <!-- Индикаторы галереи для услуг -->
                         <div class="gallery-indicators" id="servicesIndicators" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding: 0 16px;"></div>
+                        <!-- Стрелки под карточками в мобильной версии -->
+                        <div class="services-scroll-arrows-mobile" style="display: flex; justify-content: center; gap: 16px; margin-top: 20px; padding: 0 16px;">
+                            <button class="services-scroll-arrow services-scroll-arrow-left" onclick="scrollServicesLeft()" aria-label="Прокрутить влево">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                            </button>
+                            <button class="services-scroll-arrow services-scroll-arrow-right" onclick="scrollServicesRight()" aria-label="Прокрутить вправо">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -6499,16 +6570,6 @@
             </div>
             
             <div class="reviews-scroll-container" style="position: relative;">
-                <button class="reviews-scroll-arrow reviews-scroll-arrow-left" onclick="scrollReviewsLeft()" aria-label="Прокрутить влево">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M15 18l-6-6 6-6"/>
-                    </svg>
-                </button>
-                <button class="reviews-scroll-arrow reviews-scroll-arrow-right" onclick="scrollReviewsRight()" aria-label="Прокрутить вправо">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 18l6-6-6-6"/>
-                    </svg>
-                </button>
                 <div class="grid md:grid-cols-3 gap-6" id="reviewsGrid">
                 <!-- Отзыв 1 -->
                 <a href="https://yandex.ru/maps/?text=Propellini+Москва+Авиационная+79" target="_blank" rel="noopener noreferrer" class="review-card-link" style="text-decoration: none; display: block;">
@@ -6566,6 +6627,19 @@
                 </div>
                 <!-- Индикаторы галереи для отзывов -->
                 <div class="gallery-indicators" id="reviewsIndicators" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px; padding: 0 16px;"></div>
+                <!-- Стрелки под карточками в мобильной версии -->
+                <div class="reviews-scroll-arrows-mobile" style="display: flex; justify-content: center; gap: 16px; margin-top: 20px; padding: 0 16px;">
+                    <button class="reviews-scroll-arrow reviews-scroll-arrow-left" onclick="scrollReviewsLeft()" aria-label="Прокрутить влево">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="reviews-scroll-arrow reviews-scroll-arrow-right" onclick="scrollReviewsRight()" aria-label="Прокрутить вправо">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
